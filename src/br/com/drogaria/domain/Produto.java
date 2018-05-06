@@ -9,14 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name = "tbl_produtos")
-//@SequenceGenerator(name = "produtos_seq", sequenceName = "produtos_seq", initialValue = 1, allocationSize = 1)
 public class Produto {
 
 	@Id
@@ -33,7 +30,7 @@ public class Produto {
 	@Column(name = "pro_quantidade", nullable = false)
 	private Integer quantidade;
 
-	@ManyToAny(fetch = FetchType.EAGER, metaColumn = @Column) //MODIFICAR ESSE TRECHO
+	@ManyToOne(fetch = FetchType.EAGER) //MODIFICAR ESSE TRECHO
 	@JoinColumn(name = "tbl_fabricantes_fab_codigo", referencedColumnName = "fab_codigo", nullable = false)
 	private Fabricante fabricante;
 

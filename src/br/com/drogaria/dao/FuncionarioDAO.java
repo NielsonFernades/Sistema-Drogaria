@@ -6,19 +6,19 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.drogaria.domain.Fabricante;
+import br.com.drogaria.domain.Funcionario;
 import br.com.drogaria.util.HibernateUtil;
 
-public class FabricanteDAO {
-
-	public void salvar(Fabricante fabricante) {
+public class FuncionarioDAO {
+	
+	public void salvar(Funcionario funcionario) {
 		// PEGANDO A FABRICA DE SESSÃO CAPTURA E ARMAZENA
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
-			session.save(fabricante);
+			session.save(funcionario);
 			transaction.commit();
 
 		} catch (RuntimeException ex) {
@@ -33,45 +33,45 @@ public class FabricanteDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Fabricante> listar() {
+	public List<Funcionario> listar() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Fabricante> fabricantes = null;
+		List<Funcionario> funcionarios = null;
 
 		try {
-			Query consulta = session.getNamedQuery("Fabricante.listar");
-			fabricantes = consulta.list();
+			Query consulta = session.getNamedQuery("Funcionario.listar");
+			funcionarios = consulta.list();
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {
 			session.close();
 		}
-		return fabricantes;
+		return funcionarios;
 	}
 
-	public Fabricante buscarPorCodigo(Long codigo) {
+	public Funcionario buscarPorCodigo(Long codigo) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Fabricante fabricante = null;
+		Funcionario funcionario = null;
 
 		try {
-			Query consulta = session.getNamedQuery("Fabricante.buscarPorCodigo");
+			Query consulta = session.getNamedQuery("Funcionario.buscarPorCodigo");
 			consulta.setLong("codigo", codigo);
-			fabricante = (Fabricante) consulta.uniqueResult();
+			funcionario = (Funcionario) consulta.uniqueResult();
 		} catch (RuntimeException ex) {
 			throw ex;
 		} finally {
 			session.close();
 		}
-		return fabricante;
+		return funcionario;
 	}
 
-	public void excluir(Fabricante fabricante) {
+	public void excluir(Funcionario funcionario) {
 		// PEGANDO A FABRICA DE SESSÃO CAPTURA E ARMAZENA
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
-			session.delete(fabricante);
+			session.delete(funcionario);
 			transaction.commit();
 		} catch (RuntimeException ex) {
 			if (transaction != null) {
@@ -105,18 +105,14 @@ public class FabricanteDAO {
 //
 //	}
 
-	public void editar(Fabricante fabricante) {
+	public void editar(Funcionario funcionario) {
 		// PEGANDO A FABRICA DE SESSÃO CAPTURA E ARMAZENA
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
 
 		try {
 			transaction = session.beginTransaction();
-
-			Fabricante fabricanteEditar = buscarPorCodigo(fabricante.getCodigo());
-			fabricanteEditar.setDescricao(fabricante.getDescricao());
-			session.update(fabricanteEditar);
-
+			session.update(funcionario);
 			transaction.commit();
 
 		} catch (RuntimeException ex) {
@@ -130,5 +126,8 @@ public class FabricanteDAO {
 		}
 
 	}
+
+	
+	
 
 }

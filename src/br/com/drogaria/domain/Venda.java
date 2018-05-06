@@ -10,14 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
-@Table(name = "tbl_venda")
+@Table(name = "tbl_vendas")
 public class Venda {
 
 	@Id
@@ -32,7 +31,7 @@ public class Venda {
 	@Column(name = "ven_valor_total", precision = 7, scale = 2, nullable = false)
 	private BigDecimal valor;
 
-	@ManyToAny(fetch = FetchType.EAGER, metaColumn = @Column) //MODIFICAR ESSE TRECHO
+	@ManyToOne(fetch = FetchType.EAGER) //MODIFICAR ESSE TRECHO
 	@JoinColumn(name = "tbl_funcionarios_fun_codigo", referencedColumnName = "fun_codigo", nullable = false)
 	private Funcionario funcionario;
 
