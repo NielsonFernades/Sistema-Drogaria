@@ -37,8 +37,7 @@ public class ItemDAO {
 		try {
 			Query consulta = session.getNamedQuery("Item.listar");
 			itens = consulta.list();
-
-		} catch (Exception e) {
+		} catch (RuntimeException e) {
 			throw e;
 		} finally {
 			session.close();
