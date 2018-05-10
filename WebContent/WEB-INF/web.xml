@@ -7,7 +7,7 @@
 	<display-name>Drogaria</display-name>
 	
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>pages/paginaPrincipal.xhtml</welcome-file>
 
 	</welcome-file-list>
 	<servlet>
