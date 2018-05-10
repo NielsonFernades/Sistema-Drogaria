@@ -20,15 +20,29 @@
 				<p:outputLabel value="Código" />
 				<p:inputText size="10" readonly="true" />
 
-				<p:outputLabel value="Descrição" />
+				<p:outputLabel value="Nome:" />
 				<p:inputText maxlength="50" size="30" />
+
+				<p:outputLabel value="CPF" />
+				<p:inputMask mask="999.999.999-99" size="15" />
+
+				<p:outputLabel value="Funçõa:" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Selecionae uma funcção" />
+					<f:selectItem itemLabel="Administrador" />
+					<f:selectItem itemLabel="Gerente" />
+					<f:selectItem itemLabel="Balconista" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="senha" />
+				<p:password maxlength="8" size="10" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="3">
 				<p:commandButton value="Novo" />
 				<p:commandButton value="Salvar" />
 				<p:commandButton value="Voltar"
-					action="/pages/funcionarioPesquisar.xhtml?facesredirect=true" />
+					action="/pages/funcionarioPesquisar.xhtml?faces-redirect=true" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
